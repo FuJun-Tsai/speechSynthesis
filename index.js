@@ -1,11 +1,12 @@
 window.onload = function(){
-  const voiceOptionList = synth.getVoices();
-  const optionHtml = voiceOptionList.reduce((html, item) => {
-    html += `<option value="${item.lang}">${item.name}</option>`;
-    return html;
-  }, '');
-
-  document.querySelector('#voice').innerHTML = optionHtml;
+  setTimeout(() => {
+    let voiceOptionList = window.speechSynthesis.getVoices();
+    const optionHtml = voiceOptionList.reduce((html, item) => {
+      html += `<option value="${item.lang}">${item.name}</option>`;
+      return html;
+    }, '');
+    document.querySelector('#voice').innerHTML = optionHtml;
+  }, 500)
 }
 
 const synth = window.speechSynthesis;
