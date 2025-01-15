@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+
+.box{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    .label{
+        padding: 12px;
+    }
+    textarea{
+        width: 400px;
+        height: 200px;
+        padding: 4px;
+        border: 1px solid #666666;
+        border-radius: 8px;
+        width: 100%;
+    }
+    .footer{
+        text-align: center;
+        button{
+            font-size: 16px;
+        }
+    }
+}
