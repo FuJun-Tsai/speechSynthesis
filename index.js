@@ -1,47 +1,28 @@
 window.onload = function(){
   new Promise((resolve) => {
     let voiceOptionList = window.speechSynthesis.getVoices();
-    if(voiceOptionList.length){
+    if(voiceOptionList.length === 0){
       voiceOptionList = window.speechSynthesis.getVoices();
     }
+    console.log(voiceOptionList);
     resolve(voiceOptionList)
   })
   .then(voiceOptionList => {
-    const optionHtml = voiceOptionList.reduce((html, item) => {
-      html += `
-      <option value="${item.name}">
-        ${item.name}
-      </option>
-      `;
-      return html;
-    }, '');
-    document.querySelector('#voice').innerHTML = optionHtml;
+    function voiceOptionListSet(){
+      const optionHtml = voiceOptionList.reduce((html, item) => {
+        html += `<option value="${item.name}">${item.name}</option>`;
+        return html;
+      }, '');
+      document.querySelector('#voice').innerHTML = optionHtml;
+    }
 
-    let testingHtml = `
-    <table>
-      <tr>
-        <td>default</td>
-        <td>lang</td>
-        <td>localService</td>
-        <td>name</td>
-        <td>voiceURI</td>
-      </tr>
-    `;
-    testingHtml += voiceOptionList.reduce((html, item)=>{
-      html += `
-      <tr>
-        <td>${item.default}</td>
-        <td>${item.lang}</td>
-        <td>${item.localService}</td>
-        <td>${item.name}</td>
-        <td>${item.voiceURI}</td>
-      </tr>
-      `;
-      return html;
-    }, '');
-    testingHtml += `</table>`;
-
-    document.querySelector('.testing').innerHTML = testingHtml;
+    let voiceOptionListGet = setInterval(()=>{
+      voiceOptionList = window.speechSynthesis.getVoices();
+      if(voiceOptionList.length > 0){
+        voiceOptionListSet();
+        clearInterval(voiceOptionListGet);
+      }
+    }, 1000);
   });
 }
 
@@ -54,6 +35,15 @@ document.querySelector('.footer button').addEventListener('click', function(){
   let word = document.querySelector('.box textarea').value;
   speechSynthesisUtterance.text = word;
   synth.speak(speechSynthesisUtterance);
+});
+
+document.querySelector('.btns button').addEventListener('click', function(){
+  speechSynthesisUtterance.rate = 1;
+  speechSynthesisUtterance.pitch = 1;
+  document.querySelector('#rate').value = 1;
+  document.querySelector('#pitch').value = 1;
+  document.querySelector('#rate').nextElementSibling.innerText = 1;
+  document.querySelector('#pitch').nextElementSibling.innerText = 1;
 });
 
 document.querySelector('#voice').addEventListener('input', function(e){

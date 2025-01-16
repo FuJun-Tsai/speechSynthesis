@@ -7,43 +7,45 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="box">
-        <div class="label">
-            <label for="voice">
-                語言選項：
-                <span id="lang">zh-TW</span>
-            </label>
-            <select name="" id="voice">
-                <option value=""></option>
-            </select>
+    <section class="header">
+        <div class="setting flex-auto">
+            <div class="label">
+                <label for="voice">
+                    <span>語言選項</span>
+                    <span id="lang">zh-TW</span>
+                </label>
+                <select class="flex-auto" name="" id="voice">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="label rate">
+                <label for="rate">語速</label>
+                <input class="flex-auto" type="range" value="1" id="rate" min="0" max="10" step="0.1">
+                <span>1</span>
+            </div>
+            <div class="label pitch">
+                <label for="pitch">語調</label>
+                <input class="flex-auto" type="range" value="1" id="pitch" min="0" max="2" step="0.1">
+                <span>1</span>
+            </div>
         </div>
-        <div class="label">
-            <label for="">
-                語速
-            </label>
-            <input type="range" value="1" id="rate" min="0" max="10" step="0.1">
-            <span>1</span>
+        <div class="btns">
+            <button style="margin-bottom: 12px">預設值</button>
         </div>
-        <div class="label">
-            <label for="">
-                語調
-            </label>
-            <input type="range" value="1" id="pitch" min="0" max="2" step="0.1">
-            <span>1</span>
-        </div>
+    </section>
+    <section class="main">
         <textarea name="" id="">
-            I believe I can fly.
-            垂死病中驚坐起，笑問客從何處來。
-            あなたはどこにいるんだろう
+I believe I can fly.
+垂死病中驚坐起，笑問客從何處來。
+あなたはどこにいるんだろう
         </textarea>
-        <div class="footer">
-            <button>唸出來</button>
-        </div>
-    </div>
+    </section>
+    <section class="footer">
+        <button>唸出來</button>
+    </section>
     <a href="https://fujun-tsai.github.io/speechSynthesis/" target="_blank" rel="noopener noreferrer">
         <img class="qr-code" src="./imgs/speechSynthesisQR.png" alt="">
     </a>
-    <div class="testing"></div>
     <script src="./index.js" type="module"></script>
 </body>
 </html>

@@ -1,37 +1,65 @@
 *{
     box-sizing: border-box;
+    body{
+        margin: 0;
+        padding: 0 8px;
+    }
+    section{
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
     .fw-bolder{
         font-weight: bolder;
     }
+    .flex-auto{
+        flex: 1 1 auto;
+    }
 }
 
-.box{
+section.header{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 8px;
+    max-width: 600px;
+    @media screen and (max-width:576px) {
+        flex-direction: column;
+        align-items: center;
+    }
+    .setting{
+        .label{
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 12px;
+            #lang{
+                color: #005fff;
+                background: #005fff38;
+                border: 1px solid #005fff;
+                border-radius: 16px;
+                padding: 0px 8px;
+            }
+        }
+    }
+    .btns{
+    }
+}
+
+textarea{
+    width: 400px;
+    height: 200px;
+    padding: 4px;
+    margin-bottom: 4px;
+    border: 1px solid #666666;
+    border-radius: 8px;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    .label{
-        padding: 12px;
-        #lang{
-            color: #005fff;
-            background: #005fff38;
-            border: 1px solid #005fff;
-            border-radius: 16px;
-            padding: 0px 8px;
-        }
-    }
-    textarea{
-        width: 400px;
-        height: 200px;
-        padding: 4px;
-        border: 1px solid #666666;
-        border-radius: 8px;
-        width: 100%;
-    }
-    .footer{
-        text-align: center;
-        button{
-            font-size: 16px;
-        }
+}
+
+.footer{
+    text-align: center;
+    button{
+        font-size: 16px;
     }
 }
 
