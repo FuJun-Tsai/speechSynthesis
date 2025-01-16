@@ -24,3 +24,19 @@
         }
     }
 }
+
+.qr-code{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+}
+
+.testing{
+    height: 200px;
+    overflow: auto;
+    border: 1px solid black;
+    table td{
+        padding: 0px 8px;
+    }
+}

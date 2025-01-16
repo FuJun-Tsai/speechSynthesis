@@ -1,12 +1,50 @@
 window.onload = function(){
-  setTimeout(() => {
+  let voiceOptionList = window.speechSynthesis.getVoices();
+  new Promise((resolve) => {
     let voiceOptionList = window.speechSynthesis.getVoices();
+    if(voiceOptionList.length){
+      voiceOptionList = window.speechSynthesis.getVoices();
+    }
+    resolve(voiceOptionList)
+  })
+  .then(res=>{
+    console.log(res);
     const optionHtml = voiceOptionList.reduce((html, item) => {
       html += `<option value="${item.lang}">${item.name}</option>`;
       return html;
     }, '');
     document.querySelector('#voice').innerHTML = optionHtml;
-  }, 500)
+
+    let testingHtml = `
+    <table>
+      <tr>
+        <td>default</td>
+        <td>lang</td>
+        <td>localService</td>
+        <td>name</td>
+        <td>voiceURI</td>
+      </tr>
+    `;
+    testingHtml += voiceOptionList.reduce((html, item)=>{
+      html += `
+      <tr>
+        <td>${item.default}</td>
+        <td>${item.lang}</td>
+        <td>${item.localService}</td>
+        <td>${item.name}</td>
+        <td>${item.voiceURI}</td>
+      </tr>
+      `;
+      return html;
+    }, '');
+    testingHtml += `</table>`;
+
+    document.querySelector('.testing').innerHTML = testingHtml;
+  });
+}
+
+function testingPrinter(htmlResult){
+  document.querySelector('.testing').innerHTML = htmlResult;
 }
 
 const synth = window.speechSynthesis;
