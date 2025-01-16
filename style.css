@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+* .fw-bolder {
+  font-weight: bolder;
+}
 
 .box {
   width: 100%;
@@ -9,6 +12,13 @@
 }
 .box .label {
   padding: 12px;
+}
+.box .label #lang {
+  color: #005fff;
+  background: rgba(0, 95, 255, 0.2196078431);
+  border: 1px solid #005fff;
+  border-radius: 16px;
+  padding: 0px 8px;
 }
 .box textarea {
   width: 400px;

@@ -1,5 +1,4 @@
 window.onload = function(){
-  let voiceOptionList = window.speechSynthesis.getVoices();
   new Promise((resolve) => {
     let voiceOptionList = window.speechSynthesis.getVoices();
     if(voiceOptionList.length){
@@ -7,10 +6,13 @@ window.onload = function(){
     }
     resolve(voiceOptionList)
   })
-  .then(res=>{
-    console.log(res);
+  .then(voiceOptionList => {
     const optionHtml = voiceOptionList.reduce((html, item) => {
-      html += `<option value="${item.lang}">${item.name}</option>`;
+      html += `
+      <option value="${item.name}">
+        ${item.name}
+      </option>
+      `;
       return html;
     }, '');
     document.querySelector('#voice').innerHTML = optionHtml;
@@ -43,10 +45,6 @@ window.onload = function(){
   });
 }
 
-function testingPrinter(htmlResult){
-  document.querySelector('.testing').innerHTML = htmlResult;
-}
-
 const synth = window.speechSynthesis;
 const voiceOptionList = synth.getVoices();
 let speechSynthesisUtterance = new SpeechSynthesisUtterance();
@@ -60,8 +58,9 @@ document.querySelector('.footer button').addEventListener('click', function(){
 
 document.querySelector('#voice').addEventListener('input', function(e){
   let voiceOptionList = synth.getVoices();
-  let voice = voiceOptionList.find(item => item.lang === e.target.value);
+  let voice = voiceOptionList.find(item => item.name === e.target.value);
   speechSynthesisUtterance.voice = voice;
+  document.querySelector('#lang').innerText = voice.lang;
 });
 
 document.querySelector('#rate').addEventListener('input', function(e){
@@ -73,10 +72,3 @@ document.querySelector('#pitch').addEventListener('input', function(e){
   speechSynthesisUtterance.pitch = e.target.value;
   e.target.nextElementSibling.innerText = e.target.value;
 });
-
-setTimeout(() => {
-  let langSetting = 'zh-TW';
-  let voiceSelected = synth.getVoices().find(item => item.lang === langSetting);
-  speechSynthesisUtterance.voice = voiceSelected;
-  document.querySelector('#voice').value = langSetting;
-}, 500);
