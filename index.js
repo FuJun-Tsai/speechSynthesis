@@ -4,7 +4,6 @@ window.onload = function(){
     if(voiceOptionList.length === 0){
       voiceOptionList = window.speechSynthesis.getVoices();
     }
-    console.log(voiceOptionList);
     resolve(voiceOptionList)
   })
   .then(voiceOptionList => {
@@ -32,7 +31,7 @@ let speechSynthesisUtterance = new SpeechSynthesisUtterance();
 
 document.querySelector('.footer button').addEventListener('click', function(){
   synth.cancel();
-  let word = document.querySelector('.box textarea').value;
+  let word = document.querySelector('.main textarea').value;
   speechSynthesisUtterance.text = word;
   synth.speak(speechSynthesisUtterance);
 });
